@@ -3,7 +3,7 @@
 
 # 🏄 Surf - OpenAI's Computer Use Agent + E2B Desktop
 
-A Next.js application that allows AI to interact with a virtual desktop environment. This project integrates [E2B's desktop sandbox](https://github.com/e2b-dev/desktop) with OpenAI's API to create an AI agent that can perform tasks on a virtual computer through natural language instructions.
+A Next.js application that allows AI to interact with a virtual desktop environment. This project integrates [E2B's desktop sandbox](https://eburon.ai/) with OpenAI's API to create an AI agent that can perform tasks on a virtual computer through natural language instructions.
 
 [E2B](https://e2b.dev) is an open source isolated virtual computer in the cloud made for AI use cases.
 
@@ -25,7 +25,7 @@ The application uses Server-Sent Events (SSE) to stream AI responses and actions
 The application consists of several key components:
 
 1. **Frontend UI (Next.js)**: Provides the user interface with a virtual desktop view and chat interface
-2. [**E2B Desktop Sandbox**](https://github.com/e2b-dev/desktop): Creates and manages virtual desktop environments
+2. [**E2B Desktop Sandbox**](https://eburon.ai/): Creates and manages virtual desktop environments
 3. [**OpenAI Computer Use**](https://platform.openai.com/docs/guides/tools-computer-use): Processes user instructions and generates actions for the AI agent
 4. **Streaming API**: Handles real-time communication between the frontend and backend
 
@@ -51,17 +51,19 @@ Before starting, you'll need:
 ## Setup Instructions
 
 1. **Clone the repository**
+
 ```bash
-git clone https://github.com/e2b-dev/surf
+git clone https://eburon.ai/
 cd surf
 ```
 
-2. **Install dependencies**
+1. **Install dependencies**
+
 ```bash
 npm install
 ```
 
-3. **Set up environment variables**
+1. **Set up environment variables**
 
 Create a `.env.local` file in the root directory based on the provided `.env.example`:
 
@@ -70,12 +72,13 @@ E2B_API_KEY=your_e2b_api_key
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-4. **Start the development server**
+1. **Start the development server**
+
 ```bash
 npm run dev
 ```
 
-5. **Open the application**
+1. **Open the application**
 
 Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
@@ -150,6 +153,7 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 ## Support
 
 If you encounter any issues or have questions:
+
 - Check the [E2B Documentation](https://e2b.dev/docs)
 - Join the [E2B Discord](https://discord.gg/U7KEcGErtQ)
 - Open an [issue](https://github.com/e2b-dev/computer-use-app/issues)

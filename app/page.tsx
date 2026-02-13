@@ -39,6 +39,11 @@ export default function Home() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const iFrameWrapperRef = useRef<HTMLDivElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const {
     messages,
@@ -149,20 +154,28 @@ export default function Home() {
     toast.success("Chat cleared");
   };
 
-  const ThemeToggle = () => (
-    <Button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      variant="outline"
-      size="icon"
-      suppressHydrationWarning
-    >
-      {theme === "dark" ? (
-        <SunIcon className="h-5 w-5" suppressHydrationWarning />
-      ) : (
-        <MoonIcon className="h-5 w-5" suppressHydrationWarning />
-      )}
-    </Button>
-  );
+  const ThemeToggle = () => {
+    if (!mounted) {
+      return (
+        <Button variant="outline" size="icon" disabled suppressHydrationWarning />
+      );
+    }
+
+    return (
+      <Button
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        variant="outline"
+        size="icon"
+        suppressHydrationWarning
+      >
+        {theme === "dark" ? (
+          <SunIcon className="h-5 w-5" suppressHydrationWarning />
+        ) : (
+          <MoonIcon className="h-5 w-5" suppressHydrationWarning />
+        )}
+      </Button>
+    );
+  };
 
   useEffect(() => {
     if (!sandboxId) return;
@@ -211,16 +224,18 @@ export default function Home() {
               href="/"
               className="flex items-center gap-1 sm:gap-2"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Logo width={20} height={20} className="sm:w-6 sm:h-6" />
-              <h1 className="whitespace-pre">Surf - Computer Agent by </h1>
+              <h1 className="whitespace-pre">Eburon Automation by </h1>
             </Link>
             <Link
-              href="https://e2b.dev"
+              href="https://eburon.ai/"
               className="underline decoration-accent decoration-1 underline-offset-2 text-accent"
               target="_blank"
+              rel="noopener noreferrer"
             >
-              E2B
+              OpenMax
             </Link>
           </div>
 
@@ -262,14 +277,12 @@ export default function Home() {
                     }
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -312,14 +325,12 @@ export default function Home() {
                     className="px-1.5"
                   >
                     <Timer
-                      className={`h-3 w-3 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`h-3 w-3 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     />
                     <span
-                      className={`text-xs font-medium ml-1 ${
-                        !isTabVisible ? "text-fg-400" : ""
-                      }`}
+                      className={`text-xs font-medium ml-1 ${!isTabVisible ? "text-fg-400" : ""
+                        }`}
                     >
                       {Math.floor(timeRemaining / 60)}:
                       {(timeRemaining % 60).toString().padStart(2, "0")}
@@ -391,6 +402,7 @@ export default function Home() {
                 src={vncUrl}
                 className="w-full h-full"
                 allow="clipboard-read; clipboard-write"
+                title="Sandbox environment view"
               />
             ) : (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
@@ -400,9 +412,10 @@ export default function Home() {
                   <span className="text-fg">select</span> an example prompt to
                   start a new{" "}
                   <a
-                    href="https://github.com/e2b-dev/desktop"
+                    href="https://eburon.ai/"
                     className="underline inline-flex items-center gap-1 decoration-accent decoration-1 underline-offset-2 text-accent"
                     target="_blank"
+                    rel="noopener noreferrer"
                   >
                     sandbox <ArrowUpRight className="size-4" />
                   </a>
